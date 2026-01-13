@@ -15,7 +15,7 @@ framework:
     - name: themelib_sap_horizon
 server:
   customMiddleware:
-
+    - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
         port: 35729
