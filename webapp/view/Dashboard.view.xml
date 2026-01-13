@@ -1,0 +1,86 @@
+<mvc:View
+    controllerName="ehsm898.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout">
+    <Page id="dashboardPage" title="Safety Engineer Dashboard">
+        <headerContent>
+            <Button icon="sap-icon://log" press="onLogoutPress" tooltip="Logout" />
+        </headerContent>
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <IconTabBar id="idIconTabBar" class="sapUiResponsiveContentPadding">
+                    <items>
+                        <IconTabFilter icon="sap-icon://risk-status" text="Risk Assessment" key="risks">
+                            <Table id="riskTable" items="{/ZRISK_EHSM898Set}" growing="true" growingThreshold="10">
+                                <headerToolbar>
+                                    <OverflowToolbar>
+                                        <Title text="Plant Risks" level="H2" />
+                                        <ToolbarSpacer />
+                                        <SearchField width="30%" search=".onRiskSearch" />
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column><Text text="Risk ID" /></Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Plant" /></Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Description" /></Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true"><Text text="Category" /></Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true"><Text text="Severity" /></Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true"><Text text="Measures" /></Column>
+                                    <Column><Text text="Likelihood" /></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{RiskId}" />
+                                            <Text text="{Plant}" />
+                                            <Text text="{RiskDescription}" />
+                                            <Text text="{RiskCategory}" />
+                                            <ObjectStatus text="{RiskSeverity}" state="{path: 'RiskSeverity', formatter: '.formatter.severityState'}" />
+                                            <Text text="{MitigationMeasures}" />
+                                            <Text text="{Likelihood}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </IconTabFilter>
+                        <IconTabFilter icon="sap-icon://incident" text="Incident Management" key="incidents">
+                            <Table id="incidentTable" items="{/ZINCIDENT_EHSM898Set}" growing="true" growingThreshold="10">
+                                <headerToolbar>
+                                    <OverflowToolbar>
+                                        <Title text="Plant Incidents" level="H2" />
+                                        <ToolbarSpacer />
+                                        <SearchField width="30%" search=".onIncidentSearch" />
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column><Text text="Incident ID" /></Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Plant" /></Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Description" /></Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true"><Text text="Category" /></Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true"><Text text="Priority" /></Column>
+                                    <Column><Text text="Status" /></Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true"><Text text="Date" /></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{IncidentId}" />
+                                            <Text text="{Plant}" />
+                                            <Text text="{IncidentDescription}" />
+                                            <Text text="{IncidentCategory}" />
+                                            <ObjectStatus text="{IncidentPriority}" state="{path: 'IncidentPriority', formatter: '.formatter.priorityState'}" />
+                                            <Text text="{IncidentStatus}" />
+                                            <Text text="{path: 'IncidentDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
